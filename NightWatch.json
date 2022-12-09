@@ -1,0 +1,533 @@
+[
+    {
+        "id": "942057cafb4ccbfc",
+        "type": "tab",
+        "label": "NightWatch",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9f884cda188e733d",
+        "type": "tcp in",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "server": "server",
+        "host": "",
+        "port": "6789",
+        "datamode": "single",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "trim": false,
+        "base64": false,
+        "tls": "",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "e93f7da071cbfc5d"
+            ]
+        ]
+    },
+    {
+        "id": "fd624443a4512bdb",
+        "type": "debug",
+        "z": "942057cafb4ccbfc",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1504d8fed41d68a9",
+        "type": "switch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "techalarm",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "seizurealarm",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "clientalive",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "f064969950db3c60"
+            ],
+            [
+                "99a79de82311d045"
+            ],
+            [
+                "3baf0b0ea17b14c0"
+            ],
+            [
+                "3baf0b0ea17b14c0"
+            ]
+        ]
+    },
+    {
+        "id": "f064969950db3c60",
+        "type": "function",
+        "z": "942057cafb4ccbfc",
+        "name": "Tech Alarm",
+        "func": "msg.payload = msg.payload.techalarm.desc[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "fd624443a4512bdb",
+                "3023d44124e6ca6e"
+            ]
+        ]
+    },
+    {
+        "id": "99a79de82311d045",
+        "type": "function",
+        "z": "942057cafb4ccbfc",
+        "name": "Seizure Alarm",
+        "func": "msg.payload = msg.payload.seizurealarm.desc[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 340,
+        "wires": [
+            [
+                "fd624443a4512bdb",
+                "3023d44124e6ca6e"
+            ]
+        ]
+    },
+    {
+        "id": "3baf0b0ea17b14c0",
+        "type": "debug",
+        "z": "942057cafb4ccbfc",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "4b6fcd2c58cf1f83",
+        "type": "catch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "scope": [
+            "d0e2db5ba816a290"
+        ],
+        "uncaught": false,
+        "x": 810,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3023d44124e6ca6e",
+        "type": "ha-sensor",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "entityConfig": "5ceb0ca98b6d9091",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 950,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7d9f9e0c0bfc2d9",
+        "type": "debug",
+        "z": "942057cafb4ccbfc",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f97ef08d55c94a79",
+        "type": "split",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "splt": "<seizurealarm>",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "696fee55855d0804"
+            ]
+        ]
+    },
+    {
+        "id": "e93f7da071cbfc5d",
+        "type": "switch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "<seizurealarm>",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "<techalarm>",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "<clientalive>",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "f97ef08d55c94a79"
+            ],
+            [
+                "4bd65136e10bd383"
+            ],
+            [
+                "4c9291fafe89c611"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4bd65136e10bd383",
+        "type": "split",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "splt": "<techalarm>",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "28be9d65296980e8"
+            ]
+        ]
+    },
+    {
+        "id": "4c9291fafe89c611",
+        "type": "split",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "splt": "<clientalive>",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "3bf3f076675f9b2d"
+            ]
+        ]
+    },
+    {
+        "id": "d0e2db5ba816a290",
+        "type": "xml",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 810,
+        "y": 160,
+        "wires": [
+            [
+                "c7d9f9e0c0bfc2d9",
+                "1504d8fed41d68a9"
+            ]
+        ]
+    },
+    {
+        "id": "3bf3f076675f9b2d",
+        "type": "function",
+        "z": "942057cafb4ccbfc",
+        "name": "<clientalive>",
+        "func": "msg.payload = \"<clientalive>\" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "0dd3115362ac6bce"
+            ]
+        ]
+    },
+    {
+        "id": "0dd3115362ac6bce",
+        "type": "switch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "<clientalive>",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 200,
+        "wires": [
+            [
+                "d0e2db5ba816a290"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "28be9d65296980e8",
+        "type": "function",
+        "z": "942057cafb4ccbfc",
+        "name": "<techalarm>",
+        "func": "msg.payload = \"<techalarm>\" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "f05c640d043ce605"
+            ]
+        ]
+    },
+    {
+        "id": "f05c640d043ce605",
+        "type": "switch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "<techalarm>",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "d0e2db5ba816a290"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "696fee55855d0804",
+        "type": "function",
+        "z": "942057cafb4ccbfc",
+        "name": "<seizurealarm>",
+        "func": "msg.payload = \"<seizurealarm>\" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "1025b07a8b971547"
+            ]
+        ]
+    },
+    {
+        "id": "1025b07a8b971547",
+        "type": "switch",
+        "z": "942057cafb4ccbfc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "<seizurealarm>",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 120,
+        "wires": [
+            [
+                "d0e2db5ba816a290"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5ceb0ca98b6d9091",
+        "type": "ha-entity-config",
+        "server": "ee8cdebf.dbf2e",
+        "deviceConfig": "a8d528f6e625f15e",
+        "name": "",
+        "version": "6",
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "NightWatch"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "ee8cdebf.dbf2e",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": false,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": "30",
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": "at: ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "h23",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": true
+    },
+    {
+        "id": "a8d528f6e625f15e",
+        "type": "ha-device-config",
+        "name": "NightWatch",
+        "hwVersion": "",
+        "manufacturer": "Node-RED",
+        "model": "",
+        "swVersion": ""
+    }
+]
