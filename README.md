@@ -1,5 +1,7 @@
 # NightWatch-seizure-alarm-Node-Red-API
 
+## Disclaimer: This project depends on opensource software and hardware that is at best hobbiest grade and should not be considered medical grade, it should only be used in additon to in person monitoring and absaloutley not instead of!
+
 Node-Red / Home Assistant flows for forwarding NightWatch Seizure alarms via Device API.
 
 #### Alerts sent to:
